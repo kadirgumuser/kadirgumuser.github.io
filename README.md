@@ -1,1 +1,2 @@
-# kadirgumuser.github.io
+# Abdulkadir Gumuser
+Web tasarımlama dersi
