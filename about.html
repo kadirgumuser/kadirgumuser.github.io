@@ -3,76 +3,222 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hakkımda | Abdulkadir Gümüşer</title>
+    <title>Hakkında | Abdulkadir Gümüşer</title>
     <style>
-        body { font-family: 'Times New Roman', Times, serif; line-height: 1.4; margin: 40px; color: #000; }
-        header { margin-bottom: 20px; }
-        h1 { margin-bottom: 5px; font-size: 28px; }
-        nav ul { list-style-type: disc; padding-left: 20px; }
-        nav a { color: blue; text-decoration: underline; }
-        main { margin-top: 20px; }
-        h2 { border-bottom: none; margin-top: 25px; margin-bottom: 10px; font-size: 22px; }
-        blockquote { font-style: italic; margin: 20px 40px; }
-        .back-link { margin-top: 20px; display: block; color: blue; text-decoration: underline; }
-        hr { border: 0; border-top: 1px solid #333; margin-top: 30px; }
-        footer { font-size: 0.9em; margin-top: 10px; }
+        /* =============================================
+           GENEL AYARLAR
+           ============================================= */
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e8e8e8;
+            color: #333;
+        }
+
+        .wrapper {
+            max-width: 880px;
+            margin: 30px auto;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        /* GRUP SEÇİCİ: h1, h2, p */
+        h1, h2, p {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* =============================================
+           NAVİGASYON - ul > li > a, display: inline-block
+           ============================================= */
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 30px;
+            border-bottom: 1px solid #ddd;
+            background-color: #fafafa;
+        }
+
+        .top-bar h1 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #222;
+        }
+
+        /* Hiyerarşik seçici 1: nav ul */
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline-block;
+        }
+
+        /* Hiyerarşik seçici 2: nav a */
+        nav a {
+            display: inline-block;
+            padding: 6px 18px;
+            text-decoration: none;
+            color: #555;
+            font-size: 15px;
+            border-radius: 5px;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        nav a:hover {
+            background-color: #d0d8f0;
+            color: #333;
+        }
+
+        nav a.active {
+            background-color: #7b8ec8;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        /* =============================================
+           HEADER ALANI
+           ============================================= */
+        .page-header {
+            padding: 24px 30px;
+            background-color: #f4f4f8;
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* Hiyerarşik seçici 3: .page-header p */
+        .page-header p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #555;
+        }
+
+        /* =============================================
+           İKİ SÜTUNLU İÇERİK - display: inline-block
+           ============================================= */
+        .content-area {
+            padding: 25px 30px;
+        }
+
+        .columns {
+            font-size: 0;
+        }
+
+        .col-left,
+        .col-right {
+            display: inline-block;
+            vertical-align: top;
+            font-size: 15px;
+            box-sizing: border-box;
+            padding: 20px;
+            border: 2px solid;
+        }
+
+        .col-left {
+            width: 50%;
+            border-color: #c8b560;
+            background-color: #fffef5;
+        }
+
+        .col-right {
+            width: 50%;
+            border-color: #a0b4f7;
+            background-color: #eef3ff;
+        }
+
+        .col-left h2,
+        .col-right h2 {
+            font-size: 20px;
+            color: #222;
+            margin-bottom: 14px;
+        }
+
+        /* Hiyerarşik seçici 4: .col-left p */
+        .col-left p {
+            font-size: 14px;
+            color: #444;
+            line-height: 1.75;
+            text-align: justify;
+            margin-bottom: 14px;
+        }
+
+        /* Hiyerarşik seçici 5: .col-right p */
+        .col-right p {
+            font-size: 14px;
+            color: #3a3a3a;
+            line-height: 1.75;
+            text-align: justify;
+            margin-bottom: 14px;
+        }
+
+        /* =============================================
+           FOOTER
+           ============================================= */
+        footer {
+            text-align: center;
+            padding: 18px 30px;
+            border-top: 1px solid #ddd;
+            background-color: #fafafa;
+        }
+
+        /* Hiyerarşik seçici 6: footer p */
+        footer p {
+            font-size: 14px;
+            color: #777;
+        }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Hakkımda</h1>
-        <p>Kendimi ve hedeflerimi tanıttığım sayfa</p>
-    </header>
+    <div class="wrapper">
 
-    <nav>
-        <ul>
-            <li><a href="index.html">Ana Sayfa</a></li>
-            <li><a href="about.html">Hakkımda</a></li>
-            <li><a href="interests.html">İlgi Alanlarım</a></li>
-            <li><a href="contact.html">İletişim</a></li>
-        </ul>
-    </nav>
+        <!-- ÜST MENÜ -->
+        <div class="top-bar">
+            <h1>Abdulkadir Gümüşer</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Ana Sayfa</a></li>
+                    <li><a href="about.html" class="active">Hakkında</a></li>
+                    <li><a href="interests.html">İlgi Alanlarım</a></li>
+                    <li><a href="contact.html">İletişim</a></li>
+                </ul>
+            </nav>
+        </div>
 
-    <main>
-        <section>
-            <h2>Ben Kimim?</h2>
-            <p>Merhaba, ben <strong>Bilgisayar Mühendisliği öğrencisiyim.</strong> Web teknolojilerine ilgi duyuyor ve kendimi bu alanda geliştirmeyi hedefliyorum.</p>
-            <p>Özellikle <em>frontend geliştirme</em> ve kullanıcı deneyimi konularında çalışmalar yapmayı seviyorum.</p>
-        </section>
+        <!-- HEADER -->
+        <header class="page-header">
+            <p>Eğitim geçmişim, vizyonum ve yazılım dünyasındaki kariyer hedeflerim hakkında detaylı bilgiler.</p>
+        </header>
 
-        <section>
-            <h2>Eğitim Bilgilerim</h2>
-            <ul>
-                <li>Marmara Üniversitesi</li>
-                <li>Bilgisayar Mühendisliği</li>
-                <li>Web Programlama dersi</li>
-            </ul>
-        </section>
+        <!-- İKİ SÜTUNLU İÇERİK -->
+        <div class="content-area">
+            <div class="columns">
 
-        <section>
-            <h2>Motivasyon</h2>
-            <blockquote>
-                "İyi yazılmış bir web sitesi, hem kullanıcıyı hem geliştiriciyi mutlu eder."
-            </blockquote>
-        </section>
+                <div class="col-left">
+                    <h2>Eğitim ve Vizyon</h2>
+                    <p>Bilgisayar Mühendisliği öğrencisi olarak eğitimime devam ediyorum. Bu süreçte sadece kod yazmayı değil, yazılımın temelindeki mimariyi anlamayı hedefliyorum.</p>
+                    <p>Özellikle Sinyaller ve Sistemler ile Mikroişlemci Sistemleri gibi alanlar sayesinde, bilgisayarların düşük seviyede nasıl çalıştığına dair güçlü bir teorik altyapı oluşturuyorum.</p>
+                </div>
 
-        <section>
-            <h2>Hedeflerim</h2>
-            <ol>
-                <li>Modern web teknolojilerini öğrenmek</li>
-                <li>Responsive tasarım geliştirmek</li>
-                <li>ASP.NET Core ile dinamik uygulamalar yazmak</li>
-            </ol>
-        </section>
+                <div class="col-right">
+                    <h2>Hedeflerim</h2>
+                    <p>Öncelikli hedefim, teorik bilgilerimi pratik projelere dökerek modern web teknolojilerinde ve oyun geliştirmede uzmanlaşmak.</p>
+                    <p>Gelir elde edebilecek dinamik web platformları oluşturmak ve bu süreçte sağlam SQL veritabanı mimarileri kurgulamak kariyer planlarımın önemli bir parçasını oluşturuyor.</p>
+                </div>
 
-        <a href="index.html" class="back-link">&larr; Ana sayfaya geri dön</a>
-    </main>
+            </div>
+        </div>
 
-    <hr>
-    <footer>
-        <p>&copy; 2026 Web Programlama Dersi</p>
-    </footer>
+        <!-- FOOTER -->
+        <footer>
+            <p>&copy; 2026 Abdulkadir Gümüşer. Tüm hakları saklıdır.</p>
+        </footer>
+
+    </div>
 
 </body>
 </html>

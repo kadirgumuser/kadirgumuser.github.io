@@ -1,68 +1,410 @@
 <!DOCTYPE html>
 <html lang="tr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>İletişim | Abdulkadir Gümüşer</title>
     <style>
-        body { font-family: 'Times New Roman', Times, serif; line-height: 1.4; margin: 40px; color: #000; }
-        header { margin-bottom: 20px; }
-        h1 { margin-bottom: 5px; font-size: 28px; }
-        nav ul { list-style-type: disc; padding-left: 20px; }
-        nav a { color: blue; text-decoration: underline; }
-        main { margin-top: 20px; }
-        h2 { border-bottom: none; margin-top: 25px; margin-bottom: 10px; font-size: 22px; }
-        h3 { font-size: 18px; margin-bottom: 5px; }
-        .contact-list { list-style-type: none; padding-left: 0; }
-        .contact-list li { margin-bottom: 8px; }
-        .back-link { margin-top: 20px; display: block; color: blue; text-decoration: underline; }
-        hr { border: 0; border-top: 1px solid #333; margin-top: 30px; }
-        footer { font-size: 0.9em; margin-top: 10px; }
+        /* =============================================
+           GENEL AYARLAR
+           ============================================= */
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e8e8e8;
+            color: #333;
+        }
+
+        .wrapper {
+            max-width: 880px;
+            margin: 30px auto;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* GRUP SEÇİCİ: h1, h2, p */
+        h1,
+        h2,
+        p {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* =============================================
+           NAVİGASYON - ul > li > a, display: inline-block
+           ============================================= */
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 30px;
+            border-bottom: 1px solid #ddd;
+            background-color: #fafafa;
+        }
+
+        .top-bar h1 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #222;
+        }
+
+        /* Hiyerarşik seçici 1: nav ul */
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline-block;
+        }
+
+        /* Hiyerarşik seçici 2: nav a */
+        nav a {
+            display: inline-block;
+            padding: 6px 18px;
+            text-decoration: none;
+            color: #555;
+            font-size: 15px;
+            border-radius: 5px;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        nav a:hover {
+            background-color: #d0d8f0;
+            color: #333;
+        }
+
+        nav a.active {
+            background-color: #7b8ec8;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        /* =============================================
+           HEADER ALANI
+           ============================================= */
+        .page-header {
+            padding: 24px 30px;
+            background-color: #f4f4f8;
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* Hiyerarşik seçici 3: .page-header p */
+        .page-header p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #555;
+        }
+
+        /* =============================================
+           İKİ SÜTUNLU İÇERİK - display: inline-block
+           ============================================= */
+        .content-area {
+            padding: 25px 30px;
+        }
+
+        .columns {
+            font-size: 0;
+        }
+
+        .col-left,
+        .col-right {
+            display: inline-block;
+            vertical-align: top;
+            font-size: 15px;
+            box-sizing: border-box;
+            padding: 20px;
+            border: 2px solid;
+            min-height: 280px;
+        }
+
+        .col-left {
+            width: 50%;
+            border-color: #c8b560;
+            background-color: #fffef5;
+        }
+
+        .col-right {
+            width: 50%;
+            border-color: #a0b4f7;
+            background-color: #eef3ff;
+        }
+
+        .col-left h2,
+        .col-right h2 {
+            font-size: 20px;
+            color: #222;
+            margin-bottom: 14px;
+        }
+
+        /* Hiyerarşik seçici 4: .col-left p */
+        .col-left p {
+            font-size: 14px;
+            color: #444;
+            line-height: 1.75;
+            text-align: justify;
+            margin-bottom: 14px;
+        }
+
+        /* Hiyerarşik seçici 5: .col-right p */
+        .col-right p {
+            font-size: 14px;
+            color: #3a3a3a;
+            line-height: 1.75;
+            text-align: justify;
+            margin-bottom: 14px;
+        }
+
+        /* İletişim listesi */
+        .contact-list {
+            list-style: disc;
+            padding-left: 20px;
+            margin-top: 14px;
+            font-size: 14px;
+            line-height: 2;
+            color: #444;
+        }
+
+        .contact-list a {
+            color: #4a6cf7;
+            text-decoration: underline;
+        }
+
+        /* =============================================
+           FOOTER
+           ============================================= */
+        footer {
+            text-align: center;
+            padding: 18px 30px;
+            border-top: 1px solid #ddd;
+            background-color: #fafafa;
+        }
+
+        /* Hiyerarşik seçici 6: footer p */
+        footer p {
+            font-size: 14px;
+            color: #777;
+        }
+
+        /* =============================================
+           İLETİŞİM FORMU - Box Model
+           ============================================= */
+        .contact-container {
+            width: 600px;
+            margin: 0 auto 30px auto;
+            padding: 35px 40px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #fff;
+        }
+
+        .contact-container h2 {
+            text-align: center;
+            font-size: 24px;
+            color: #222;
+            margin-bottom: 28px;
+        }
+
+        .contact-container label {
+            display: block;
+            font-size: 14px;
+            font-weight: 700;
+            color: #444;
+            margin-bottom: 6px;
+        }
+
+        /* Çoklu seçici: input, select, textarea */
+        .contact-container input[type="text"],
+        .contact-container input[type="email"],
+        .contact-container input[type="password"],
+        .contact-container select,
+        .contact-container textarea {
+            width: 100%;
+            padding: 10px 14px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            box-sizing: border-box;
+        }
+
+        .contact-container textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        .contact-container .field-group {
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 14px 18px;
+            margin-bottom: 20px;
+        }
+
+        .contact-container .field-group label {
+            font-weight: 400;
+            margin-bottom: 4px;
+        }
+
+        .contact-container input[type="file"] {
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 16px;
+        }
+
+        .btn-submit {
+            flex: 1;
+            padding: 12px 30px;
+            background-color: #3b82f6;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-submit:hover {
+            background-color: #2563eb;
+        }
+
+        .btn-reset {
+            flex: 1;
+            padding: 12px 30px;
+            background-color: #dc2626;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-reset:hover {
+            background-color: #b91c1c;
+        }
     </style>
 </head>
+
 <body>
 
-    <header>
-        <h1>İletişim</h1>
-        <p>Benimle iletişime geçebileceğiniz bilgiler</p>
-    </header>
+    <div class="wrapper">
 
-    <nav>
-        <ul>
-            <li><a href="index.html">Ana Sayfa</a></li>
-            <li><a href="about.html">Hakkımda</a></li>
-            <li><a href="interests.html">İlgi Alanlarım</a></li>
-            <li><a href="contact.html">İletişim</a></li>
-        </ul>
-    </nav>
+        <!-- ÜST MENÜ -->
+        <div class="top-bar">
+            <h1>Abdulkadir Gümüşer</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Ana Sayfa</a></li>
+                    <li><a href="about.html">Hakkında</a></li>
+                    <li><a href="interests.html">İlgi Alanlarım</a></li>
+                    <li><a href="contact.html" class="active">İletişim</a></li>
+                </ul>
+            </nav>
+        </div>
 
-    <main>
-        <section>
-            <h2>İletişim Bilgilerim</h2>
-            <ul class="contact-list">
-                <li>📧 <strong>E-posta:</strong> <a href="abdulkadirgumuserr@gmail.com">ogrenci@example.com</a></li>
-                <li>📱 <strong>Telefon:</strong> <a href="+90 545 470 5782">+90 555 111 22 33</a></li>
-                <li>💻 <strong>GitHub:</strong> <a href="https://github.com/kadirgumuser" target="_blank">GitHub Profilim</a></li>
-            </ul>
-        </section>
+        <!-- HEADER -->
+        <header class="page-header">
+            <p>Benimle iletişime geçmek, projelerimi incelemek veya ortak çalışmalar yapmak için bağlantı bilgilerim.
+            </p>
+        </header>
 
-        <section>
-            <h2>Sık Sorulan Sorular</h2>
-            
-            <h3>Mesajlara ne kadar sürede dönüş yapıyorsunuz?</h3>
-            <p>Genellikle 24 saat içinde e-posta yoluyla dönüş yapıyorum.</p>
+        <!-- İKİ SÜTUNLU İÇERİK -->
+        <div class="content-area">
+            <div class="columns">
 
-            <h3>Projelerde iş birliğine açık mısınız?</h3>
-            <p>Evet, özellikle eğitim ve açık kaynak projelerinde iş birliklerine açığım.</p>
-        </section>
+                <div class="col-left">
+                    <h2>İletişim Bilgilerim</h2>
+                    <p>Benimle projeler, algoritmalar veya oyun optimizasyonları hakkında aşağıdaki platformlardan
+                        doğrudan iletişime geçebilirsin:</p>
+                    <ul class="contact-list">
+                        <li><strong>E-posta:</strong> <a
+                                href="mailto:abdulkadirgumuserr@gmail.com">abdulkadirgumuserr@gmail.com</a></li>
+                        <li><strong>GitHub:</strong> <a href="https://github.com/kadirgumuser"
+                                target="_blank">github.com/kadirgumuser</a></li>
+                        <li><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/kadirgumuser"
+                                target="_blank">linkedin.com/in/kadirgumuser</a></li>
+                        <li><strong>X (Twitter):</strong> <a href="https://twitter.com/kadirgumuser"
+                                target="_blank">twitter.com/kadirgumuser</a></li>
+                    </ul>
+                </div>
 
-        <a href="index.html" class="back-link">&larr; Ana sayfaya geri dön</a>
-    </main>
+                <div class="col-right">
+                    <h2>İş Birlikleri</h2>
+                    <p>Özellikle 3D oyunlarda performans artırımı veya yenilikçi, gelir odaklı web projeleri üzerine
+                        yapılacak iş birliklerine her zaman açığım.</p>
+                    <p>Gönderdiğiniz e-postalara ve iletişim taleplerine genellikle gün içerisinde, en geç 24 saat
+                        içinde mutlaka geri dönüş yapıyorum.</p>
+                </div>
 
-    <hr>
-    <footer>
-        <p>&copy; 2026 Web Programlama Dersi</p>
-    </footer>
+            </div>
+        </div>
+
+        <!-- İLETİŞİM FORMU -->
+        <div class="contact-container">
+            <h2>Detaylı İletişim Formu</h2>
+            <form>
+                <label for="adSoyad">Ad Soyad:</label>
+                <input type="text" id="adSoyad" name="adSoyad" placeholder="Örn: Abdulkadir Gümüşer">
+
+                <label for="eposta">E-posta Adresi:</label>
+                <input type="email" id="eposta" name="eposta" placeholder="ornek@mail.com">
+
+                <label for="sifre">Başvuru Takip Şifresi:</label>
+                <input type="password" id="sifre" name="sifre" placeholder="Şifrenizi girin">
+
+                <label>İletişim Tercihi:</label>
+                <div class="field-group">
+                    <label><input type="radio" name="iletisimTercihi" value="eposta" checked> Bana e-posta ile
+                        ulaşın</label>
+                    <label><input type="radio" name="iletisimTercihi" value="telefon"> Bana telefonla ulaşın</label>
+                </div>
+
+                <label>İlgi Alanları / Yetenekler:</label>
+                <div class="field-group">
+                    <label><input type="checkbox" name="yetenekler" value="html"> HTML</label>
+                    <label><input type="checkbox" name="yetenekler" value="css"> CSS</label>
+                    <label><input type="checkbox" name="yetenekler" value="algoritma"> Algoritma</label>
+                </div>
+
+                <label for="konu">Konu:</label>
+                <select id="konu" name="konu">
+                    <option value="" disabled selected>Lütfen bir konu seçin...</option>
+                    <option value="is-teklifi">İş Teklifi</option>
+                    <option value="soru">Soru</option>
+                    <option value="geri-bildirim">Geri Bildirim</option>
+                </select>
+
+                <label for="dosya">Özgeçmiş (CV) veya Fotoğraf Yükle:</label>
+                <input type="file" id="dosya" name="dosya">
+
+                <label for="mesaj">Mesajınız:</label>
+                <textarea id="mesaj" name="mesaj" placeholder="Detaylı mesajınızı buraya yazabilirsiniz..."></textarea>
+
+                <div class="btn-group">
+                    <button type="submit" class="btn-submit">Gönder</button>
+                    <button type="reset" class="btn-reset">Temizle</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- FOOTER -->
+        <footer>
+            <p>&copy; 2026 Abdulkadir Gümüşer. Tüm hakları saklıdır.</p>
+        </footer>
+
+    </div>
 
 </body>
+
 </html>
