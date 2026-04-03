@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 5: Position | Abdulkadir Gümüşer</title>
+    <link rel="stylesheet" href="style.css"> 
+    <style>
+        /* =========================================
+           SADECE BU SAYFAYA ÖZEL LAB STİLLERİ
+           ========================================= */
+
+        /* İçerik Alanı Düzeni */
+        .lab-content {
+            flex: 1; 
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-y: auto; 
+            background-color: #f4f4f8;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #555;
+        }
+
+        /* 1) KAPSAYICI - Position: Relative [cite: 10] */
+        .card-container {
+            position: relative; /* Kural ihlali olmaması için eklendi [cite: 9] */
+            width: 100%;
+            max-width: 600px;
+            background-color: #eef3ff;
+            border: 2px solid #a0b4f7;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            /* Basit Animasyon Kuralı [cite: 17, 41] */
+            animation: slideIn 0.8s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 2) ÜST ÜSTE BİNME (Z-INDEX) [cite: 18, 42] */
+        .bg-circle {
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            width: 160px;
+            height: 160px;
+            background-color: #d0d8f0;
+            border-radius: 50%;
+            opacity: 0.6;
+            z-index: 1; /* İçeriğin altında kalması için */
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 2; /* Arka plan şeklinin üzerine çıkması için [cite: 18] */
+        }
+
+        .card-content h2 {
+            font-size: 26px;
+            color: #222;
+            margin-bottom: 15px;
+        }
+
+        .card-content p {
+            line-height: 1.6;
+            color: #444;
+            margin-bottom: 25px;
+        }
+
+        /* 3) KÜÇÜK BİLGİ ETİKETLERİ - Position: Absolute (En az 3 adet) [cite: 11, 25, 38] */
+        .badge-price {
+            position: absolute;
+            top: 20px;
+            left: -10px;
+            background-color: #fffef5;
+            border: 1px solid #c8b560;
+            padding: 6px 12px;
+            font-weight: bold;
+            border-radius: 4px;
+            z-index: 3;
+            /* Etkileşim Kuralı 1: Cursor ve Transition [cite: 13, 14, 40] */
+            cursor: help; 
+            transition: transform 0.3s ease; 
+        }
+
+        .badge-price:hover {
+            transform: translateX(10px); /* Hover animasyonu [cite: 15] */
+        }
+
+        .badge-date {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #dcfce7;
+            color: #166534;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            z-index: 3;
+        }
+
+        .badge-status {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background-color: #ffedd5;
+            color: #9a3412;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: bold;
+            z-index: 3;
+            /* Etkileşim Kuralı 2: Farklı Cursor [cite: 13] */
+            cursor: not-allowed; 
+        }
+
+        /* Etkileşim Kuralı 3: Active Efekti ve Pointer [cite: 16] */
+        .location-btn {
+            position: relative;
+            z-index: 2;
+            cursor: pointer; 
+        }
+
+        .location-btn:active {
+            transform: scale(0.95); 
+        }
+
+        /* 4) SABİT YARDIMCI MENÜ - Position: Fixed [cite: 12, 26, 39] */
+        .fixed-helper {
+            position: fixed; 
+            bottom: 40px;
+            right: 40px;
+            background-color: #7b8ec8;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            font-weight: bold;
+            z-index: 999;
+            transition: background-color 0.2s;
+        }
+
+        .fixed-helper:hover {
+            background-color: #5a6eab;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        
+        <header class="navbar">
+            <div class="logo">Abdulkadir Gümüşer</div>
+            <nav class="links">
+                <a href="index.html">Ana Sayfa</a>
+                <a href="about.html">Hakkında</a>
+                <a href="interests.html">İlgi Alanlarım</a>
+                <a href="contact.html">İletişim</a>
+                <a href="lab-position.html" style="font-weight:bold; color:#7b8ec8;">Etkinlikler</a>
+            </nav>
+        </header>
+
+        <div class="lab-content">
+            
+            <div class="page-header">
+                <h2>Kısa Başlık Alanı</h2> <p>CSS Position (Relative, Absolute, Fixed) Uygulaması</p>
+            </div>
+
+            <div class="card-container">
+                
+                <div class="bg-circle"></div>
+
+                <div class="badge-price">Ücretsiz</div> <div class="badge-date">24 Nisan</div> <div class="badge-status">Son Kayıt</div> <div class="card-content">
+                    <h2>Teknoloji Topluluğu Etkinliği</h2> <p>Bu örnek sayfada amaç; CSS position özelliklerini kullanarak tek bir duyuru kartı üzerinde relative, absolute, fixed, z-index, hover, cursor ve animasyon mantığını birlikte göstermektir.</p> <button class="btn location-btn">Konum: Konferans Salonu</button> </div>
+
+            </div>
+
+        </div>
+
+        <a href="#top" class="fixed-helper">Yardımcı Menü</a> <footer class="footer">
+            <p>&copy; 2026 Abdulkadir Gümüşer - 2026-LAB Position Örnek Çalışması</p> </footer>
+
+    </div>
+
+</body>
+</html>
