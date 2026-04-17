@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdulkadir Gümüşer | Uygulamalar</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Ödeve Özel Tasarım */
+        .homework-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Sekme (Tab) Menüsü Tasarımı */
+        .tab-menu {
+            display: flex;
+            gap: 10px;
+            border-bottom: 2px solid #7b8ec8;
+            margin-bottom: 25px;
+            justify-content: flex-start; /* Sol üstte hizalama */
+        }
+        .tab-btn {
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-bottom: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 8px 8px 0 0; /* Sadece üst köşeler yuvarlak */
+            transition: 0.3s;
+            font-weight: bold;
+            color: #555;
+        }
+        .tab-btn:hover {
+            background-color: #e2e2e2;
+        }
+        .tab-btn.active {
+            background-color: #7b8ec8;
+            color: white;
+            border-color: #7b8ec8;
+        }
+
+        /* Sekme İçerikleri */
+        .app-content {
+            display: none; /* Varsayılan olarak tüm sekmeler gizli */
+            animation: fadeIn 0.4s; /* Yumuşak geçiş efekti */
+        }
+        .app-content.active {
+            display: block; /* Sadece aktif sekme görünür */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Form ve Input Tasarımları (Öncekiyle aynı) */
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        .btn-calc {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f0f0f0;
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .btn-calc:hover {
+            background-color: #e0e0e0;
+        }
+        .btn-blue {
+            background-color: #007bff;
+            color: white;
+            border: none;
+        }
+        .btn-blue:hover {
+            background-color: #0056b3;
+        }
+        .result-box {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f4f4f4;
+            border-radius: 4px;
+            display: none;
+        }
+        .result-box h3 { margin-top: 0; margin-bottom: 15px; }
+        .result-box p { margin: 5px 0; }
+        .result-success {
+            background-color: #d4edda;
+            color: #155724;
+            font-weight: bold;
+            text-align: center;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        
+        <header class="navbar">
+            <div class="logo">Abdulkadir Gümüşer</div>
+            <nav class="links">
+                <a href="index.html">Ana Sayfa</a>
+                <a href="about.html">Hakkında</a>
+                <a href="interests.html">İlgi Alanlarım</a>
+                <a href="contact.html">İletişim</a>
+                <a href="lab-position.html" style="font-weight:bold; color:#7b8ec8;">Etkinlikler</a>
+                <a href="not-hesaplama.html" style="font-weight:bold; color:#7b8ec8;">Uygulamalar</a>
+            </nav>
+        </header>
+
+        <div class="homework-container">
+            
+            <div class="tab-menu">
+                <button class="tab-btn active" onclick="sekmeyiAc(event, 'not-uygulamasi')">Not Hesaplama</button>
+                <button class="tab-btn" onclick="sekmeyiAc(event, 'birim-uygulamasi')">Birim Dönüştürücü</button>
+            </div>
+
+            <div id="not-uygulamasi" class="app-content active">
+                <h2>Öğrenci Not Hesaplama</h2>
+                <div class="form-group">
+                    <input type="text" id="adSoyad" placeholder="Ad Soyad (Örn: Filiz Akın)">
+                </div>
+                <div class="form-group">
+                    <input type="number" id="vizeNotu" placeholder="Vize Notu" min="0" max="100">
+                </div>
+                <div class="form-group">
+                    <input type="number" id="finalNotu" placeholder="Final Notu" min="0" max="100">
+                </div>
+                <button class="btn-calc" onclick="hesaplaNot()">Hesapla</button>
+
+                <div id="notSonuc" class="result-box">
+                    <h3 id="sonucIsim"></h3>
+                    <p>Ortalama: <span id="sonucOrtalama"></span></p>
+                    <p>Harf Notu: <span id="sonucHarf"></span></p>
+                    <p>Durum: <span id="sonucDurum"></span></p>
+                </div>
+            </div>
+
+            <div id="birim-uygulamasi" class="app-content">
+                <h2>Birim Dönüştürücü</h2>
+                <p style="margin-bottom: 20px; color: #555;">Farklı mühendislik birimlerini birbirine dönüştürün.</p>
+                
+                <div class="form-group">
+                    <label style="display:block; margin-bottom:5px;">Değer Giriniz:</label>
+                    <input type="number" id="donusumDegeri" placeholder="50">
+                </div>
+                <div class="form-group">
+                    <label style="display:block; margin-bottom:5px;">Dönüşüm Tipi:</label>
+                    <select id="donusumTipi">
+                        <option value="celsius-fahrenheit">Celsius -> Fahrenheit</option>
+                        <option value="metre-kilometre">Metre -> Kilometre</option>
+                        <option value="kilogram-gram">Kilogram -> Gram</option>
+                    </select>
+                </div>
+                <button class="btn-calc btn-blue" onclick="hesaplaDonusum()">Hesapla</button>
+                
+                <div id="donusumSonuc" class="result-box result-success">
+                    Sonuç: <span id="sonucDeger"></span>
+                </div>
+            </div>
+
+        </div>
+
+        <footer class="footer">
+            <p>&copy; 2026 Abdulkadir Gümüşer - Web Geliştirme Uygulamaları</p>
+        </footer>
+
+    </div>
+
+    <script>
+        // --- SEKME (TAB) DEĞİŞTİRME MANTIĞI ---
+        function sekmeyiAc(secilenEvent, uygulamaId) {
+            // 1. Bütün içerikleri gizle
+            const tumIcerikler = document.getElementsByClassName("app-content");
+            for (let i = 0; i < tumIcerikler.length; i++) {
+                tumIcerikler[i].classList.remove("active");
+            }
+
+            // 2. Bütün butonların aktiflik durumunu kaldır
+            const tumButonlar = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < tumButonlar.length; i++) {
+                tumButonlar[i].classList.remove("active");
+            }
+
+            // 3. Tıklanan sekmenin içeriğini göster ve butonunu aktif yap
+            document.getElementById(uygulamaId).classList.add("active");
+            secilenEvent.currentTarget.classList.add("active");
+        }
+
+        // --- UYGULAMA 1: NOT HESAPLAMA ---
+        function hesaplaNot() {
+            const adSoyad = document.getElementById('adSoyad').value;
+            const vize = parseFloat(document.getElementById('vizeNotu').value);
+            const final = parseFloat(document.getElementById('finalNotu').value);
+
+            if (!adSoyad || isNaN(vize) || isNaN(final)) {
+                alert("Lütfen Ad Soyad, Vize ve Final notlarını eksiksiz girin.");
+                return;
+            }
+
+            const ortalama = (vize * 0.4) + (final * 0.6);
+            let harfNotu = "";
+            let durum = ortalama >= 50 ? "Geçti" : "Kaldı";
+
+            if (ortalama >= 90) harfNotu = "AA";
+            else if (ortalama >= 80) harfNotu = "BA";
+            else if (ortalama >= 70) harfNotu = "BB";
+            else if (ortalama >= 60) harfNotu = "CB";
+            else if (ortalama >= 50) harfNotu = "CC";
+            else if (ortalama >= 40) harfNotu = "DC";
+            else if (ortalama >= 30) harfNotu = "DD";
+            else harfNotu = "FF";
+
+            document.getElementById('sonucIsim').innerText = adSoyad;
+            document.getElementById('sonucOrtalama').innerText = ortalama.toFixed(2);
+            document.getElementById('sonucHarf').innerText = harfNotu;
+            document.getElementById('sonucDurum').innerText = durum;
+            document.getElementById('notSonuc').style.display = "block";
+        }
+
+        // --- UYGULAMA 2: BİRİM DÖNÜŞTÜRÜCÜ ---
+        function hesaplaDonusum() {
+            const deger = parseFloat(document.getElementById('donusumDegeri').value);
+            const tip = document.getElementById('donusumTipi').value;
+
+            if (isNaN(deger)) {
+                alert("Lütfen dönüştürmek için sayısal bir değer girin.");
+                return;
+            }
+
+            let sonuc = 0;
+
+            if (tip === "celsius-fahrenheit") {
+                sonuc = (deger * 9/5) + 32;
+            } else if (tip === "metre-kilometre") {
+                sonuc = deger / 1000;
+            } else if (tip === "kilogram-gram") {
+                sonuc = deger * 1000;
+            }
+
+            document.getElementById('sonucDeger').innerText = sonuc.toLocaleString('tr-TR');
+            document.getElementById('donusumSonuc').style.display = "block";
+        }
+    </script>
+
+</body>
+</html>
