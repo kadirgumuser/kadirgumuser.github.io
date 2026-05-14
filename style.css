@@ -1,0 +1,150 @@
+/* Genel Ayarlar */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* Kapsayıcı (Wrapper) - Genel Zorunlu Şart */
+.wrapper {
+    display: flex;
+    flex-direction: column; /* Dikey yerleşim için column [cite: 11] */
+    height: 100vh;          /* Ana kapsayıcı 100vh olmalı [cite: 9] */
+    overflow: hidden;       /* İçerik ekran yüksekliğine sığmalı [cite: 10] */
+    background-color: #f4f4f8;
+}
+
+/* 1) Navbar (Üst Menü) */
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Solda logo, sağda linkler [cite: 17] */
+    align-items: center;            /* Dikey hizalama [cite: 18] */
+    height: 10vh;                   /* Yükseklik 10vh [cite: 15] */
+    background-color: #fafafa;
+    padding: 0 30px;
+    border-bottom: 1px solid #ddd;
+}
+.navbar .logo {
+    font-size: 20px;
+    font-weight: 700;
+}
+.navbar .links a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #555;
+    font-size: 15px;
+}
+
+/* 2) Hero (İki Kolon) */
+.hero {
+    display: flex;
+    flex-direction: row;            /* Row yönü [cite: 23] */
+    justify-content: space-between; /* İçerik boşluklu dağılım [cite: 24] */
+    align-items: stretch;           /* Görsel kutusu yüksekliği esnesin [cite: 25] */
+    height: 30vh;                   /* Yükseklik 30vh [cite: 20] */
+    background-color: #fff;
+    padding: 20px 30px;
+    border-bottom: 1px solid #ddd;
+}
+.hero-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 20px;
+}
+.hero-left h1 { margin-bottom: 10px; font-size: 22px; }
+.hero-left p { margin-bottom: 15px; font-size: 14px; color: #555; }
+
+.hero-right {
+    flex: 1;
+    display: flex;
+}
+.placeholder-image {
+    flex: 1;
+    background-color: #e2e8f0;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+}
+
+/* 3) Kartlar Bölümü (Multiple Items) */
+.cards {
+    display: flex;        /* Flex display [cite: 31] */
+    flex-wrap: wrap;      /* Alt satıra geçiş [cite: 32] */
+    gap: 15px;            /* Gap kullanımı [cite: 33] */
+    height: 30vh;         /* Yükseklik 30vh [cite: 27] */
+    padding: 15px 30px;
+    background-color: #f9fafb;
+}
+.card {
+    flex: 1 1 calc(33.333% - 15px); /* Her satıra 3 kart, toplam 6 kart sığar */
+    background-color: #fffef5;
+    border: 1px solid #c8b560;
+    border-radius: 6px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.card h3 { font-size: 16px; margin-bottom: 5px; }
+.card p { font-size: 13px; color: #444; }
+
+/* 4) Flex Grow Uygulama Bölümü */
+.flex-grow-area {
+    display: flex;
+    align-items: stretch; /* Kutular dikeyde esnesin [cite: 40] */
+    gap: 20px;
+    height: 20vh;         /* Yükseklik 20vh [cite: 35] */
+    padding: 15px 30px;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+}
+.box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    font-weight: 600;
+    color: #333;
+}
+.box-1 {
+    flex-grow: 1;         /* 1. Kutu: flex-grow: 1 [cite: 37] */
+    background-color: #e0f2fe;
+}
+.box-2 {
+    flex-grow: 2;         /* 2. Kutu: flex-grow: 2 [cite: 38] */
+    background-color: #dcfce7;
+}
+.box-3 {
+    flex-grow: 1;         /* 3. Kutu: flex-grow: 1 [cite: 39] */
+    background-color: #ffedd5;
+}
+
+/* 5) Footer Bölümü */
+.footer {
+    display: flex;
+    justify-content: center; /* Yatayda ortalama [cite: 44] */
+    align-items: center;     /* Dikeyde ortalama [cite: 45] */
+    height: 10vh;            /* Yükseklik 10vh [cite: 42] */
+    background-color: #fafafa;
+    border-top: 1px solid #ddd;
+    color: #777;
+    font-size: 14px;
+}
+
+/* Ortak Buton Stili */
+.btn {
+    padding: 6px 15px;
+    background-color: #7b8ec8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    align-self: flex-start;
+}
+.box-btn { align-self: center; margin-top: 10px; background-color: #4ade80; }

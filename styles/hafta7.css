@@ -1,0 +1,241 @@
+/* ========== Hafta 7 - Ek CSS Stilleri ========== */
+
+/* Genel */
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* ========== HERO ========== */
+.hero-section {
+    background-color: #f8f9fa;
+}
+
+.kullanilan-liste li {
+    padding: 4px 0;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+/* ========== ATÖLYE KART NUMARALARI ========== */
+.badge-number {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.85rem;
+}
+
+.badge-blue {
+    background-color: #0d6efd;
+}
+
+.badge-green {
+    background-color: #198754;
+}
+
+.badge-red {
+    background-color: #dc3545;
+}
+
+/* Kart Hover Efekti */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #e9ecef;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* ========== ETKİNLİK BİLGİLERİ ========== */
+.bilgi-satir {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.bilgi-satir:last-child {
+    border-bottom: none;
+}
+
+.bilgi-label {
+    font-weight: 500;
+    color: #555;
+}
+
+/* ========== NEDEN KATILMALISINIZ KARTLARI ========== */
+.neden-mavi {
+    background-color: #e3f0ff;
+}
+
+.neden-yesil {
+    background-color: #e3f7e8;
+}
+
+.neden-sari {
+    background-color: #fff8e1;
+}
+
+.neden-kirmizi {
+    background-color: #fce4ec;
+}
+
+.neden-kart h6 {
+    font-size: 0.9rem;
+}
+
+.neden-kart p {
+    font-size: 0.8rem;
+    color: #555;
+}
+
+/* ========== SONUÇ ALANI ========== */
+.sonuc-bos {
+    background-color: #e8f4fd;
+    color: #555;
+    border: 1px dashed #b3d7f2;
+}
+
+.sonuc-dolu {
+    background-color: #fff;
+    border: 1px solid #e9ecef;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+#sonucKarti table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #eee;
+}
+
+#sonucKarti table td:first-child {
+    font-weight: 600;
+    width: 35%;
+    color: #495057;
+}
+
+/* ========== UYARI MESAJI ========== */
+.uyari-mesaji {
+    color: #dc3545;
+    font-size: 0.8rem;
+    margin-top: 4px;
+}
+
+/* ========== KARANLIK TEMA ========== */
+body.dark-tema {
+    background-color: #1a1a2e;
+    color: #e0e0e0;
+}
+
+body.dark-tema .hero-section {
+    background-color: #16213e;
+}
+
+body.dark-tema .bg-light {
+    background-color: #16213e !important;
+}
+
+body.dark-tema .card {
+    background-color: #1e2a45;
+    border-color: #2a3a5c;
+    color: #e0e0e0;
+}
+
+body.dark-tema .card .text-secondary,
+body.dark-tema .text-secondary {
+    color: #9aa5b4 !important;
+}
+
+body.dark-tema .form-control,
+body.dark-tema .form-select {
+    background-color: #253350;
+    border-color: #3a4f70;
+    color: #e0e0e0;
+}
+
+body.dark-tema .form-control::placeholder {
+    color: #7a8a9e;
+}
+
+body.dark-tema .form-label {
+    color: #ccd5e0;
+}
+
+body.dark-tema .bilgi-satir {
+    border-bottom-color: #2a3a5c;
+}
+
+body.dark-tema .bilgi-label {
+    color: #9aa5b4;
+}
+
+body.dark-tema .neden-mavi {
+    background-color: #1a2e4a;
+}
+
+body.dark-tema .neden-yesil {
+    background-color: #1a3a2a;
+}
+
+body.dark-tema .neden-sari {
+    background-color: #3a3520;
+}
+
+body.dark-tema .neden-kirmizi {
+    background-color: #3a1a20;
+}
+
+body.dark-tema .neden-kart h6 {
+    color: #e0e0e0;
+}
+
+body.dark-tema .neden-kart p {
+    color: #9aa5b4;
+}
+
+body.dark-tema .sonuc-bos {
+    background-color: #16213e;
+    border-color: #2a3a5c;
+    color: #9aa5b4;
+}
+
+body.dark-tema .sonuc-dolu {
+    background-color: #1e2a45;
+    border-color: #2a3a5c;
+}
+
+body.dark-tema #sonucKarti table td {
+    border-bottom-color: #2a3a5c;
+}
+
+body.dark-tema #sonucKarti table td:first-child {
+    color: #9aa5b4;
+}
+
+body.dark-tema .form-check-label {
+    color: #ccd5e0;
+}
+
+body.dark-tema .btn-outline-dark {
+    color: #e0e0e0;
+    border-color: #e0e0e0;
+}
+
+body.dark-tema .btn-outline-dark:hover {
+    background-color: #e0e0e0;
+    color: #1a1a2e;
+}
+
+body.dark-tema .badge-number {
+    opacity: 0.9;
+}
